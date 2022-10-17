@@ -1,24 +1,26 @@
 {
-  "name": "cypress-api-testing",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/urwa-umer-confiz/cypress-api-testing.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/urwa-umer-confiz/cypress-api-testing/issues"
-  },
-  "homepage": "https://github.com/urwa-umer-confiz/cypress-api-testing#readme",
-  "dependencies": {
-    "cypress": "^10.10.0",
-    "typescript": "^4.8.4"
-  }
+    "name": "cypress-api-testing",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/urwa-umer-confiz/cypress-api-testing.git"
+    },
+    "keywords": [
+        "cypress"
+    ],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/urwa-umer-confiz/cypress-api-testing/issues"
+    },
+    "homepage": "https://github.com/urwa-umer-confiz/cypress-api-testing#readme",
+    "dependencies": {
+        "cypress": "^10.10.0",
+        "typescript": "^4.8.4"
+    }
 }
