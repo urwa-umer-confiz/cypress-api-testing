@@ -1,0 +1,10 @@
+# Video and Screenshot directories
+cypress/videos
+cypress/screenshots
+cypress/downloads
+cypress/results
+cypress/reports
+
+# Dependency directories
+node_modules/
+jspm_packages/
