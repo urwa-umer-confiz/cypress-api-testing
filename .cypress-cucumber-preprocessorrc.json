@@ -1,0 +1,10 @@
+{
+    "stepDefinitions": [
+        "[filepath]/**/*.{js,ts}",
+        "[filepath].{js,ts}",
+        "cypress/step_definitions/*.{js,ts}",
+        "[filepath]\\***.{js,ts}",
+        "[filepath].{js,ts}",
+        "cypress\\step_definitions\\*.{js,ts}"
+    ]
+}

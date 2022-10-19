@@ -20,6 +20,9 @@
     },
     "homepage": "https://github.com/urwa-umer-confiz/cypress-api-testing#readme",
     "dependencies": {
+        "@badeball/cypress-cucumber-preprocessor": "^13.0.2",
+        "@bahmutov/cypress-esbuild-preprocessor": "^2.1.5",
+        "@cypress/browserify-preprocessor": "^3.0.2",
         "cypress": "^10.10.0",
         "cypress-mochawesome-reporter": "^3.2.3",
         "mocha": "^10.1.0",
