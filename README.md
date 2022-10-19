@@ -220,6 +220,7 @@ Options available for the `cy.request()`
     |-- fixtures
     |-- e2e
     |-- support
+    |-- reports
   |-- cypress.config.ts
   |-- cypress.env.json
   |-- package-lock.json
@@ -240,10 +241,14 @@ Options available for the `cy.request()`
     - Subfolder naming convention depends on test grouping, which is usually based on the general functional area (e.g. `/cypress/e2e/recipes/` for recipes related APIs”).
 
 3. `/cypress.config.ts` for Cypress [configuration](https://docs.cypress.io/guides/references/configuration.html#Options).
+4. `/cypress/reports` reports generated from cypress-mochawesome-reporter are saved here.
+5. `/cypress/support` or [Support Files](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Support-file)
 
-4. `/cypress.env.json` for Cypress environmental variables. This file is not pushed to github and need to be created locally with the correct credentials.
+    - A support file is a place for reusable behavior such as Custom Commands or global overrides that are available and can be applied to all spec files.
 
-5. `/package.json` for all dependencies related to Cypress end-to-end testing.
+6. `/cypress.env.json` for Cypress environmental variables. This file is not pushed to github and need to be created locally with the correct credentials.
+
+7. `/package.json` for all dependencies related to Cypress end-to-end testing.
 
 ## Helping Materials
 
