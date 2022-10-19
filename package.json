@@ -21,6 +21,8 @@
     "homepage": "https://github.com/urwa-umer-confiz/cypress-api-testing#readme",
     "dependencies": {
         "cypress": "^10.10.0",
+        "cypress-mochawesome-reporter": "^3.2.3",
+        "mocha": "^10.1.0",
         "typescript": "^4.8.4"
     }
 }
