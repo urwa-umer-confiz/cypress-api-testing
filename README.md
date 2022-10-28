@@ -4,13 +4,24 @@ This project is created for learning the API automation using the Cypress.
 
 ## Table of Contents
 
--   [cypress-api-testing](#cypress-api-testing)
-    -   [Table of Contents](#table-of-contents)
-    -   [Technologies](#technologies)
-    -   [Test Target Application](#test-target-application)
-    -   [Project Status](#project-status)
-    -   [Room of Improvement](#room-of-improvement)
-    -   []
+- [cypress-api-testing](#cypress-api-testing)
+  - [Table of Contents](#table-of-contents)
+  - [Technologies](#technologies)
+  - [Test Target Application](#test-target-application)
+  - [Project Status](#project-status)
+  - [Room of Improvement](#room-of-improvement)
+  - [Setup](#setup)
+    - [Project Setup from Github](#project-setup-from-github)
+    - [Project Setup from Start](#project-setup-from-start)
+      - [1- Installing NodeJS](#1--installing-nodejs)
+      - [2- Installing Cypress](#2--installing-cypress)
+      - [3- Installing Typescript](#3--installing-typescript)
+  - [Run Commands](#run-commands)
+  - [Code Examples](#code-examples)
+    - [Code Example of Cypress Request](#code-example-of-cypress-request)
+  - [Cypress Request](#cypress-request)
+  - [Folder and File Structure](#folder-and-file-structure)
+  - [Helping Materials](#helping-materials)
 
 ## Technologies
 
