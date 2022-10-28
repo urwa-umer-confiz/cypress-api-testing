@@ -8,6 +8,9 @@ This project is created for learning the API automation using the Cypress.
     -   [Table of Contents](#table-of-contents)
     -   [Technologies](#technologies)
     -   [Test Target Application](#test-target-application)
+    -   [Project Status](#project-status)
+    -   [Room of Improvement](#room-of-improvement)
+    -   []
 
 ## Technologies
 
