@@ -7,7 +7,7 @@ When('I send the GET request with {} and {}', (url: string, test_data: string) =
         cy.fixture('' + test_data).then((data) => {
             qs = data
 
-            cy.request({
+            cy.api({
                 method: 'GET',
                 url: url,
                 failOnStatusCode: false,
@@ -24,7 +24,7 @@ When('I send the GET request with {} and {}', (url: string, test_data: string) =
     } else {
         qs = JSON.parse(test_data)
 
-        cy.request({
+        cy.api({
             method: 'GET',
             url: url,
             failOnStatusCode: false,

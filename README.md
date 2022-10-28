@@ -193,7 +193,7 @@ describe('Verify the response of the blog post API', () => {
 
 ## Cypress Request
 
-Options available for the `cy.request()`
+Options available for the `cy.request()` or `cy.api()` in case of using the `cypress-plugin-api` plugin
 
 | Option                     | Default                                                                               | Description                                                                                                                                                                                              |
 | -------------------------- | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -256,3 +256,4 @@ Options available for the `cy.request()`
 -   [Expect Assertions Docs](https://jestjs.io/docs/expect)
 -   [Typescript with Cypress Docs](https://docs.cypress.io/guides/tooling/typescript-support)
 -   [Environment Variable Docs](https://docs.cypress.io/guides/guides/environment-variables#Setting)
+-   [Cypress Plugin API Docs](https://github.com/filiphric/cypress-plugin-api)
