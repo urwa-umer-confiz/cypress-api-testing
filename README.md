@@ -4,10 +4,29 @@ This project is created for learning the API automation using the Cypress.
 
 ## Table of Contents
 
--   [cypress-api-testing](#cypress-api-testing)
-    -   [Table of Contents](#table-of-contents)
-    -   [Technologies](#technologies)
-    -   [Test Target Application](#test-target-application)
+- [cypress-api-testing](#cypress-api-testing)
+  - [Table of Contents](#table-of-contents)
+  - [Technologies](#technologies)
+  - [Test Target Application](#test-target-application)
+  - [Project Status](#project-status)
+  - [Room of Improvement](#room-of-improvement)
+  - [Setup](#setup)
+    - [Project Setup from Github](#project-setup-from-github)
+    - [Project Setup from Start](#project-setup-from-start)
+      - [1- Installing NodeJS](#1--installing-nodejs)
+      - [2- Installing Cypress](#2--installing-cypress)
+      - [3- Installing Typescript](#3--installing-typescript)
+      - [4- Installing Cypress Cucumber Preprocessor plugin](#4--installing-cypress-cucumber-preprocessor-plugin)
+  - [Run Commands](#run-commands)
+  - [Code Examples](#code-examples)
+    - [Code Example of Cypress Request](#code-example-of-cypress-request)
+  - [Cypress Request](#cypress-request)
+  - [Code Style and Formatting](#code-style-and-formatting)
+    - [Test File (.ts)](#test-file-ts)
+    - [Feature File (.feature)](#feature-file-feature)
+  - [Folder and File Structure](#folder-and-file-structure)
+  - [Tags](#tags)
+  - [Helping Materials](#helping-materials)
 
 ## Technologies
 
@@ -137,6 +156,79 @@ Project is created with:
 4. Create index.d.ts file
 5. Add the Cypress Commands created in commands.ts to index.d.ts as Chainable.
 
+#### 4- Installing Cypress Cucumber Preprocessor plugin
+
+1.  Install `@badeball/cypress-cucumber-preprocessor` and supporting dependencies.
+
+    ```bash
+    npm install --save-dev @badeball/cypress-cucumber-preprocessor
+    ```
+
+    ```bash
+    npm install --save-dev @bahmutov/cypress-esbuild-preprocessor
+    ```
+
+    ```bash
+    npm install --save-dev @cypress/browserify-preprocessor
+    ```
+
+2.  In cypress.config.ts
+
+    ```typescript
+    import { defineConfig } from 'cypress'
+
+    const createBundler = require('@bahmutov/cypress-esbuild-preprocessor')
+    const addCucumberPreprocessorPlugin = require('@badeball/cypress-cucumber-preprocessor').addCucumberPreprocessorPlugin
+    const createEsbuildPlugin = require('@badeball/cypress-cucumber-preprocessor/esbuild').createEsbuildPlugin
+
+    export default defineConfig({
+
+        // other plugin configurations
+
+    },
+        e2e: {
+            async setupNodeEvents(on, config) {
+                const bundler = createBundler({
+                    plugins: [createEsbuildPlugin(config)],
+            })
+
+            on('file:preprocessor', bundler)
+            await addCucumberPreprocessorPlugin(on, config)
+            return config
+        },
+
+        // other cypress configurations
+
+        },
+    })
+    ```
+
+3.  In cypress.config.ts
+
+    ```typescript
+    // add inside e2e object
+    specPattern: 'cypress/e2e/**/*.feature',
+    ```
+
+4.  Create a new file in root directory with name of `.cypress-cucumber-preprocessorrc.json`
+5.  Add following configuration in `.cypress-cucumber-preprocessorrc.json`
+
+    ```json
+    {
+        "stepDefinitions": [
+            "[filepath]/**/*.{js,ts}",
+            "[filepath].{js,ts}",
+            "cypress/step_definitions/*.{js,ts}",
+            "[filepath]\\***.{js,ts}",
+            "[filepath].{js,ts}",
+            "cypress\\step_definitions\\*.{js,ts}"
+        ]
+    }
+    ```
+
+6.  In `cypress/e2e` folder add the `.feature` files
+7.  In `cypress/step_definitions` folder add the `.cy.ts` files
+
 ## Run Commands
 
 -   To run cypress
@@ -155,6 +247,18 @@ Project is created with:
 
     ```bash
     npx cypress run --spec cypress/e2e/file_name.feature
+    ```
+
+*   To run test with single tags which are defined on a feature file
+
+    ```bash
+    npx cypress run --env tags=@positive
+    ```
+
+*   To run test with multiple tags which are defined on a feature file
+
+    ```bash
+    npx cypress run --env tags="@positive or @negative"
     ```
 
 ## Code Examples
@@ -213,14 +317,38 @@ Options available for the `cy.request()` or `cy.api()` in case of using the `cyp
 | `retryOnNetworkFailure`    | `true`                                                                                | Whether Cypress should automatically retry transient network errors under the hood. Cypress will retry a request up to 4 times if this is set to true.                                                   |
 | `timeout`                  | [`responseTimeout`](https://docs.cypress.io/guides/references/configuration#Timeouts) | Time to wait for `cy.request()` to resolve before [timing out](https://docs.cypress.io/api/commands/request#Timeouts)                                                                                    |
 
+## Code Style and Formatting
+
+### Test File (.ts)
+
+-   In cypress\step_definitions folder, save file as: `get_request.cy.ts`
+-   Avoid using ; at the end of the line
+-   Use the **arrow functions**
+-   Use the **Types** for the variables created
+-   Use **Prettier** formatter to format the file
+-   **Prettier** configuration are added in `.prettierignore` file
+
+### Feature File (.feature)
+
+-   In cypress\e2e folder, save the feature file as: `api_data.feature`
+-   Use the single feature file for the test data
+-   Use the **Examples** to define the test data for the requests
+-   Add both positive and negative test for the requests
+-   Use the **tags** to split and categorize the test data
+-   For the larger test data use the Cypress fixtures
+
 ## Folder and File Structure
 
 ```
   |-- cypress
     |-- fixtures
     |-- e2e
+    |-- step_definitions
     |-- support
+    |-- utils
+    |-- videos
     |-- reports
+    |-- screenshots
   |-- cypress.config.ts
   |-- cypress.env.json
   |-- package-lock.json
@@ -231,24 +359,45 @@ Options available for the `cy.request()` or `cy.api()` in case of using the `cyp
 
     - Fixtures are used as external pieces of static data that can be used by tests.
     - Typically used with the `cy.fixture()` command and most often when stubbing network requests.
+    - In this project use the fixtures to pass the long `.json` test data for the API calls. Save the `.json` files in the fixtures folder then use the file names on the test feature files to pass the test data. The requests functions can take two types of test data: `.json` file saved in fixtures folder or simple `.json` object written in the test feature file.
 
 2. `/cypress/e2e` or [Test Files](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Test-files)
 
     - To start writing tests,
 
-        - Create `.cy.ts` test files here
+        - Create the feature files here
+        - Save the files with `.feature` extension
+        - Refresh tests list in the Cypress Test Runner and a new file should appear in the list.
 
     - Subfolder naming convention depends on test grouping, which is usually based on the general functional area (e.g. `/cypress/e2e/recipes/` for recipes related APIs”).
 
-3. `/cypress.config.ts` for Cypress [configuration](https://docs.cypress.io/guides/references/configuration.html#Options).
-4. `/cypress/reports` reports generated from cypress-mochawesome-reporter are saved here.
-5. `/cypress/support` or [Support Files](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Support-file)
+3. `/cypress/step_definitions`
+
+    - Add the `.cy.ts` files here
+
+4. `/cypress/utils` for common utility functions.
+
+5. `/cypress/videos` for video of test execution which is create automatically after you run the test in headless mode.
+
+6. `/cypress/reports` reports generated from cypress-mochawesome-reporter are saved here.
+7. `/cypress/screenshots` screenshot images which are generated by cypress for the failed tests only are saved here.
+
+8. `/cypress.config.ts` for Cypress [configuration](https://docs.cypress.io/guides/references/configuration.html#Options).
+9. `/cypress/reports` reports generated from cypress-mochawesome-reporter are saved here.
+10. `/cypress/support` or [Support Files](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Support-file)
 
     - A support file is a place for reusable behavior such as Custom Commands or global overrides that are available and can be applied to all spec files.
 
-6. `/cypress.env.json` for Cypress environmental variables. This file is not pushed to github and need to be created locally with the correct credentials.
+11. `/cypress.env.json` for Cypress environmental variables. This file is not pushed to github and need to be created locally with the correct credentials.
 
-7. `/package.json` for all dependencies related to Cypress end-to-end testing.
+12. `/package.json` for all dependencies related to Cypress end-to-end testing.
+
+## Tags
+
+Following tags are used in Feature file:
+
+-   _@positive_: Indicates towards the Happy path steps
+-   _@negative_: Indicates towards the Negative Flows
 
 ## Helping Materials
 
