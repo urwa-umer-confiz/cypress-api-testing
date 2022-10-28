@@ -5,6 +5,9 @@ cypress/downloads
 cypress/results
 cypress/reports
 
+# Cypress environment file
+cypress.env.json
+
 # Dependency directories
 node_modules/
 jspm_packages/
