@@ -41,7 +41,7 @@ Project is created with:
 
 ## Room of Improvement
 
--   [ ] Add Reporting plugin
+-   [x] Add Reporting plugin
 
 ## Setup
 
@@ -168,7 +168,7 @@ Project is created with:
 *   To run one spec file
 
     ```bash
-    npx cypress run --spec cypress/e2e/file_name.feature
+    npx cypress run --spec cypress/e2e/file_name.cy.ts
     ```
 
 ## Code Examples
